@@ -85,7 +85,7 @@ const Login = () => {
             </h1>
           </div>
           <p className="text-gray-300 text-lg">
-            Sign in to your HomeNest account to continue your gaming journey
+            Sign in to your HomeNest account to continue your home journey with us!
           </p>
         </div>
 

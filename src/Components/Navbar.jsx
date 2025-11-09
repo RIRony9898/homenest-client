@@ -1,40 +1,83 @@
-import React from "react";
+import { useContext } from "react";
 import { Link, NavLink } from "react-router";
+import logo from "../assets/logo.png";
+import userlogo from "../assets/user-logo.png";
+import { AuthContext } from "../AuthContexts/AuthContext";
 import Container from "../Components/Container";
-import logo from '../assets/logo.png'
 
 const Navbar = () => {
+  const { user, signOutUser } = useContext(AuthContext);
+  const handleSignOut = () => {
+    signOutUser()
+      .then(() => {})
+      .catch(() => {});
+  };
   const links = (
     <>
       <li>
-        <NavLink to={"/"} className={({ isActive }) =>
-              isActive ? "text-red-500 font-bold" : "text-black"
-            }>Home</NavLink>
+        <NavLink
+          to={"/"}
+          className={({ isActive }) =>
+            isActive
+              ? "text-purple-400 font-bold"
+              : "text-gray-300 hover:text-purple-400 transition-colors duration-200"
+          }
+        >
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to={"/property"} className={({ isActive }) =>
-              isActive ? "text-red-500 font-bold" : "text-black"
-            }>Property</NavLink>
+        <NavLink
+          to={"/property"}
+          className={({ isActive }) =>
+            isActive
+              ? "text-purple-400 font-bold"
+              : "text-gray-300 hover:text-purple-400 transition-colors duration-200"
+          }
+        >
+          Property
+        </NavLink>
       </li>
       <li>
-        <NavLink to={"/news"} className={({ isActive }) =>
-              isActive ? "text-red-500 font-bold" : "text-black"
-            }>News</NavLink>
+        <NavLink
+          to={"/news"}
+          className={({ isActive }) =>
+            isActive
+              ? "text-purple-400 font-bold"
+              : "text-gray-300 hover:text-purple-400 transition-colors duration-200"
+          }
+        >
+          News
+        </NavLink>
       </li>
       <li>
-        <NavLink to={"/about"} className={({ isActive }) =>
-              isActive ? "text-red-500 font-bold" : "text-black"
-            }>About</NavLink>
+        <NavLink
+          to={"/about"}
+          className={({ isActive }) =>
+            isActive
+              ? "text-purple-400 font-bold"
+              : "text-gray-300 hover:text-purple-400 transition-colors duration-200"
+          }
+        >
+          About
+        </NavLink>
       </li>
       <li>
-        <NavLink to={"/contact"} className={({ isActive }) =>
-              isActive ? "text-red-500 font-bold" : "text-black"
-            }>Contact</NavLink>
+        <NavLink
+          to={"/contact"}
+          className={({ isActive }) =>
+            isActive
+              ? "text-purple-400 font-bold"
+              : "text-gray-300 hover:text-purple-400 transition-colors duration-200"
+          }
+        >
+          Contact
+        </NavLink>
       </li>
     </>
   );
   return (
-    <div className="bg-base-200 shadow-md">
+    <div className="bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 shadow-lg border-b border-purple-800">
       <Container>
         <div className="navbar ">
           <div className="navbar-start">
@@ -62,21 +105,52 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex="-1"
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                className="menu menu-sm dropdown-content bg-slate-800 rounded-box z-1 mt-3 w-52 p-2 shadow-lg border border-purple-700"
               >
                 {links}
               </ul>
             </div>
             <div className="flex items-center">
               <img src={logo} alt="HomeNest Logo" />
-              <a className="btn btn-ghost text-xl">HomeNest</a>
+              <a className="btn btn-ghost text-xl text-white hover:bg-purple-800">
+                HomeNest
+              </a>
             </div>
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{links}</ul>
           </div>
           <div className="navbar-end">
-            <Link to={'/login'} className="btn">Login</Link>
+            {user ? (
+              <>
+                <Link to={"/profile"}>
+                  <div className="avatar">
+                    <div className="w-10 rounded-full mx-2 ring-2 ring-purple-400">
+                      <img src={user.photoURL || userlogo} />
+                    </div>
+                  </div>
+                </Link>
+                <Link
+                  to={"/profile"}
+                  className="mr-4 font-semibold text-white hover:text-purple-400 transition-colors duration-200"
+                >
+                  {user.displayName || user.email}
+                </Link>
+                <button
+                  onClick={handleSignOut}
+                  className="btn bg-purple-600 hover:bg-purple-700 text-white border-purple-600"
+                >
+                  Sign out
+                </button>
+              </>
+            ) : (
+              <Link
+                to={"/login"}
+                className="btn bg-purple-600 hover:bg-purple-700 text-white border-purple-600"
+              >
+                Sign in
+              </Link>
+            )}
           </div>
         </div>
       </Container>
