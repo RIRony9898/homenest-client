@@ -112,7 +112,7 @@ const Navbar = () => {
             </div>
             <div className="flex items-center">
               <img src={logo} alt="HomeNest Logo" />
-              <a className="btn btn-ghost text-xl text-white hover:bg-purple-800">
+              <a className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent font-bold text-2xl">
                 HomeNest
               </a>
             </div>

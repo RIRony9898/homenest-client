@@ -1,7 +1,6 @@
 import {
   Calendar,
   Edit,
-  Gamepad2,
   Key,
   LogOut,
   Mail,
@@ -10,6 +9,7 @@ import {
   Star,
   Trophy,
   User,
+  HousePlus
 } from "lucide-react";
 import { useContext } from "react";
 import { useNavigate } from "react-router";
@@ -54,7 +54,7 @@ const UserProfile = () => {
                   />
                 </div>
                 <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-                  <Gamepad2 className="w-4 h-4 text-white" />
+                  <HousePlus className="w-4 h-4 text-white" />
                 </div>
               </div>
 
@@ -62,12 +62,12 @@ const UserProfile = () => {
               <div className="flex-1 text-center md:text-left">
                 <div className="flex items-center justify-center md:justify-start mb-4">
                   <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mr-3">
-                    {user.displayName || "Gamer"}
+                    {user.displayName || "User"}
                   </h1>
                   <div className="flex items-center space-x-1 bg-purple-600/20 px-3 py-1 rounded-full">
                     <Trophy className="w-4 h-4 text-yellow-400" />
                     <span className="text-purple-300 text-sm font-medium">
-                      Pro Gamer
+                      Pro User
                     </span>
                   </div>
                 </div>
@@ -187,7 +187,7 @@ const UserProfile = () => {
                   onClick={() => navigate("/installed")}
                 >
                   <Package className="w-5 h-5 mr-2" />
-                  Installed Apps
+                  Favorite Packages
                 </button>
 
                 <button
@@ -197,28 +197,6 @@ const UserProfile = () => {
                   <LogOut className="w-5 h-5 mr-2" />
                   Sign Out
                 </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Gaming Stats Section */}
-          <div className="mt-8 bg-slate-800/50 backdrop-blur-sm border border-purple-700/30 rounded-2xl shadow-2xl p-6">
-            <div className="flex items-center mb-6">
-              <Trophy className="w-6 h-6 text-yellow-400 mr-3" />
-              <h2 className="text-2xl font-bold text-white">Gaming Stats</h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-purple-400 mb-2">0</div>
-                <p className="text-gray-300">Games Played</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-pink-400 mb-2">0</div>
-                <p className="text-gray-300">Apps Installed</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-400 mb-2">0</div>
-                <p className="text-gray-300">Achievements</p>
               </div>
             </div>
           </div>

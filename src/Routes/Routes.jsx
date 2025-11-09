@@ -8,6 +8,7 @@ import Property from "../Pages/Property";
 import News from "../Pages/News";
 import About from "../Pages/About";
 import Contact from "../Pages/Contact";
+import UserProfile from "../Pages/UserProfile";
 
 const router = createBrowserRouter([
     {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register/>
+            },
+            {
+                path: '/profile',
+                element: <UserProfile/>
             }
         ]
     }

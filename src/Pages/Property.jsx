@@ -1,7 +1,9 @@
 import React from 'react';
 import Container from '../Components/Container';
+import useTitle from '../Hooks/useTitle';
 
 const Property = () => {
+    useTitle("Property");
     return (
         <div>
              <Container>
