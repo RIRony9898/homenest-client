@@ -74,6 +74,46 @@ const Navbar = () => {
           Contact
         </NavLink>
       </li>
+      {user && (
+        <>
+          <li>
+            <NavLink
+              to={"/add-properties"}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-purple-400 font-bold"
+                  : "text-gray-300 hover:text-purple-400 transition-colors duration-200"
+              }
+            >
+              Add Properties
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to={"/my-properties"}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-purple-400 font-bold"
+                  : "text-gray-300 hover:text-purple-400 transition-colors duration-200"
+              }
+            >
+              My Properties
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to={"/my-ratings"}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-purple-400 font-bold"
+                  : "text-gray-300 hover:text-purple-400 transition-colors duration-200"
+              }
+            >
+              My Ratings
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
   return (
@@ -110,11 +150,11 @@ const Navbar = () => {
                 {links}
               </ul>
             </div>
-            <Link to={'/'} className="flex items-center">
+            <Link to={"/"} className="flex items-center">
               <img src={logo} alt="HomeNest Logo" />
-              <a className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent font-bold text-2xl">
+              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent font-bold text-2xl">
                 HomeNest
-              </a>
+              </span>
             </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
@@ -122,27 +162,43 @@ const Navbar = () => {
           </div>
           <div className="navbar-end">
             {user ? (
-              <>
-                <Link to={"/profile"}>
-                  <div className="avatar">
-                    <div className="w-10 rounded-full mx-2 ring-2 ring-purple-400">
-                      <img src={user.photoURL || userlogo} />
-                    </div>
+              <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="avatar cursor-pointer"
+                >
+                  <div className="w-10 rounded-full ring-2 ring-purple-400">
+                    <img src={user.photoURL || userlogo} alt="User Avatar" />
                   </div>
-                </Link>
-                <Link
-                  to={"/profile"}
-                  className="mr-4 font-semibold text-white hover:text-purple-400 transition-colors duration-200"
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content menu bg-slate-800 rounded-box z-1 w-52 p-2 shadow-lg border border-purple-700"
                 >
-                  {user.displayName || user.email}
-                </Link>
-                <button
-                  onClick={handleSignOut}
-                  className="btn bg-purple-600 hover:bg-purple-700 text-white border-purple-600"
-                >
-                  Sign out
-                </button>
-              </>
+                  <li className="menu-title">
+                    <span className="text-gray-300">
+                      {user.displayName || user.email}
+                    </span>
+                  </li>
+                  <li>
+                    <Link
+                      to={"/profile"}
+                      className="text-gray-300 hover:text-purple-400 transition-colors duration-200"
+                    >
+                      Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <button
+                      onClick={handleSignOut}
+                      className="text-gray-300 hover:text-purple-400 transition-colors duration-200"
+                    >
+                      Log out
+                    </button>
+                  </li>
+                </ul>
+              </div>
             ) : (
               <Link
                 to={"/login"}

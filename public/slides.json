@@ -16,5 +16,23 @@
     "description": "List your property with us and reach thousands of potential buyers. Get the best value for your asset.",
     "image": "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1200&h=600&fit=crop",
     "buttonText": "List Property"
+  },
+  {
+    "title": "Luxury Living Spaces",
+    "description": "Experience premium living with our exclusive collection of luxury apartments and villas. Elevate your lifestyle.",
+    "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&h=600&fit=crop",
+    "buttonText": "View Luxury Homes"
+  },
+  {
+    "title": "Commercial Properties",
+    "description": "Find the perfect space for your business. From offices to retail spaces, we have commercial properties for every need.",
+    "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=600&fit=crop",
+    "buttonText": "Explore Commercial"
+  },
+  {
+    "title": "Rental Properties",
+    "description": "Discover comfortable rental homes and apartments. Find your next rental property with ease and convenience.",
+    "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200&h=600&fit=crop",
+    "buttonText": "Find Rentals"
   }
 ]

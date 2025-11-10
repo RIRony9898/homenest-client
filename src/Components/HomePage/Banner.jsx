@@ -26,7 +26,7 @@ const Banner = () => {
         navigation
         pagination={{ clickable: true }}
         autoplay={{ delay: 5000, disableOnInteraction: false }}
-        loop={true}
+        loop={slides.length >= 3}
         className="h-[60vh] md:h-[70vh]"
       >
         {slides.map((slide, index) => (
