@@ -35,8 +35,8 @@ const PropertyCard = ({ property }) => {
           {property.location}
         </p>
         <p className="text-purple-300 mb-2">
-          <strong className="text-gray-300">Posted by:</strong>{" "}
-          {property.postedBy}
+          <strong className="text-gray-300">Description:</strong>{" "}
+          {property.description}
         </p>
         <button
           onClick={handleViewDetails}
