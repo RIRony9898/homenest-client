@@ -1,0 +1,32 @@
+[
+  {
+    "icon": "Shield",
+    "title": "Verified Properties",
+    "description": "All our listings are thoroughly verified for authenticity and legal compliance."
+  },
+  {
+    "icon": "Clock",
+    "title": "24/7 Support",
+    "description": "Round-the-clock customer support to assist you with any queries or concerns."
+  },
+  {
+    "icon": "Award",
+    "title": "Award Winning",
+    "description": "Recognized for excellence in real estate services with multiple industry awards."
+  },
+  {
+    "icon": "Users",
+    "title": "Expert Team",
+    "description": "Our experienced professionals ensure you get the best deals and guidance."
+  },
+  {
+    "icon": "TrendingUp",
+    "title": "Market Insights",
+    "description": "Stay ahead with our comprehensive market analysis and property trends."
+  },
+  {
+    "icon": "CheckCircle",
+    "title": "Quality Assurance",
+    "description": "We maintain the highest standards in property listings and customer service."
+  }
+]

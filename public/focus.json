@@ -1,0 +1,63 @@
+[
+  {
+    "icon": "Home",
+    "title": "Residential Properties",
+    "description": "Find your perfect home from our extensive collection of houses, apartments, and condos.",
+    "features": ["Single Family Homes", "Apartments", "Condos", "Townhouses"]
+  },
+  {
+    "icon": "Building",
+    "title": "Commercial Properties",
+    "description": "Discover commercial spaces ideal for your business needs and investment opportunities.",
+    "features": [
+      "Office Spaces",
+      "Retail Shops",
+      "Warehouses",
+      "Industrial Units"
+    ]
+  },
+  {
+    "icon": "MapPin",
+    "title": "Property Location Services",
+    "description": "Expert guidance on finding properties in prime locations with excellent amenities.",
+    "features": [
+      "Location Analysis",
+      "Neighborhood Guide",
+      "Amenity Mapping",
+      "Investment Zones"
+    ]
+  },
+  {
+    "icon": "Search",
+    "title": "Property Search & Discovery",
+    "description": "Advanced search tools and personalized recommendations to find your ideal property.",
+    "features": [
+      "Advanced Filters",
+      "Virtual Tours",
+      "Property Alerts",
+      "Market Reports"
+    ]
+  },
+  {
+    "icon": "Calculator",
+    "title": "Financial Planning",
+    "description": "Comprehensive financial services including mortgage calculations and investment planning.",
+    "features": [
+      "Mortgage Calculator",
+      "Investment Analysis",
+      "Tax Planning",
+      "Loan Assistance"
+    ]
+  },
+  {
+    "icon": "FileText",
+    "title": "Legal & Documentation",
+    "description": "Complete legal support and documentation services for smooth property transactions.",
+    "features": [
+      "Title Verification",
+      "Legal Documentation",
+      "Contract Review",
+      "Closing Services"
+    ]
+  }
+]

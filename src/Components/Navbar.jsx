@@ -110,12 +110,12 @@ const Navbar = () => {
                 {links}
               </ul>
             </div>
-            <div className="flex items-center">
+            <Link to={'/'} className="flex items-center">
               <img src={logo} alt="HomeNest Logo" />
               <a className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent font-bold text-2xl">
                 HomeNest
               </a>
-            </div>
+            </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{links}</ul>

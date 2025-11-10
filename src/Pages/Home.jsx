@@ -1,21 +1,21 @@
-import React from 'react';
-import Container from '../Components/Container';
-import useTitle from '../Hooks/useTitle';
+import Banner from "../Components/HomePage/Banner";
+import ChooseUs from "../Components/HomePage/ChooseUs";
+import Featured from "../Components/HomePage/Featured";
+import Focus from "../Components/HomePage/Focus";
+import Testimonial from "../Components/HomePage/Testimonial";
+import useTitle from "../Hooks/useTitle";
 
 const Home = () => {
-    useTitle("Home");
-    return (
-        <div>
-            <Container>
-                <h2 className='text-3xl font-bold text-center my-5'>This is Home Page</h2>
-                {/* banner section */}
-                {/* focus section */}
-                {/* featured section */}
-                {/* why choose us section */}
-                {/* testimonial section */}
-            </Container>
-        </div>
-    );
+  useTitle("Home");
+  return (
+    <div>
+      <Banner />
+      <Focus />
+      <Featured />
+      <ChooseUs />
+      <Testimonial />
+    </div>
+  );
 };
 
 export default Home;

@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Find Your Dream Home",
+    "description": "Discover amazing properties in prime locations with HomeNest. Your perfect home is just a click away.",
+    "image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&h=600&fit=crop",
+    "buttonText": "Explore Properties"
+  },
+  {
+    "title": "Invest in Real Estate",
+    "description": "Make smart investments with our curated collection of premium properties. Grow your wealth with real estate.",
+    "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=600&fit=crop",
+    "buttonText": "View Investments"
+  },
+  {
+    "title": "Sell Your Property",
+    "description": "List your property with us and reach thousands of potential buyers. Get the best value for your asset.",
+    "image": "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1200&h=600&fit=crop",
+    "buttonText": "List Property"
+  }
+]
