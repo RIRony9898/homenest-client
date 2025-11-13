@@ -7,6 +7,7 @@ import {
   Search,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useTheme } from "../../Contexts/ThemeContext";
 import Container from "../Container";
 
 const iconMap = {
@@ -19,6 +20,7 @@ const iconMap = {
 };
 
 const Focus = () => {
+  const { isDarkMode } = useTheme();
   const [services, setServices] = useState([]);
 
   useEffect(() => {
@@ -29,13 +31,23 @@ const Focus = () => {
   }, []);
 
   return (
-    <div className="py-16 bg-gradient-to-b from-slate-900 to-slate-800">
+    <div
+      className={`py-16 ${
+        isDarkMode
+          ? "bg-gradient-to-b from-slate-900 to-slate-800"
+          : "bg-gradient-to-b from-white to-gray-50"
+      }`}
+    >
       <Container>
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
             Our Services
           </h2>
-          <p className="text-gray-300 text-lg max-w-3xl mx-auto">
+          <p
+            className={`${
+              isDarkMode ? "text-gray-300" : "text-gray-600"
+            } text-lg max-w-3xl mx-auto`}
+          >
             Comprehensive real estate solutions tailored to meet all your
             property needs. From buying and selling to investment planning,
             we've got you covered.
@@ -48,24 +60,38 @@ const Focus = () => {
             return (
               <div
                 key={index}
-                className="bg-gradient-to-br from-slate-700 to-slate-800 p-6 rounded-lg border border-purple-700 hover:border-purple-500 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10 group"
+                className={`${
+                  isDarkMode
+                    ? "bg-gradient-to-br from-slate-700 to-slate-800 border-purple-700 hover:border-purple-500 hover:shadow-purple-500/10"
+                    : "bg-white border-gray-200 hover:border-purple-300 hover:shadow-gray-200/50"
+                } p-6 rounded-lg border transition-all duration-300 hover:shadow-lg group`}
               >
                 <div className="flex items-center mb-4">
                   <div className="bg-purple-600 p-3 rounded-lg mr-4 group-hover:bg-purple-500 transition-colors duration-300">
                     <IconComponent className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-xl font-semibold text-white">
+                  <h3
+                    className={`text-xl font-semibold ${
+                      isDarkMode ? "text-white" : "text-gray-900"
+                    }`}
+                  >
                     {service.title}
                   </h3>
                 </div>
-                <p className="text-gray-300 leading-relaxed mb-4">
+                <p
+                  className={`${
+                    isDarkMode ? "text-gray-300" : "text-gray-600"
+                  } leading-relaxed mb-4`}
+                >
                   {service.description}
                 </p>
                 <ul className="space-y-1">
                   {service.features.map((feature, idx) => (
                     <li
                       key={idx}
-                      className="text-sm text-purple-300 flex items-center"
+                      className={`text-sm ${
+                        isDarkMode ? "text-purple-300" : "text-purple-600"
+                      } flex items-center`}
                     >
                       <span className="w-1.5 h-1.5 bg-purple-400 rounded-full mr-2"></span>
                       {feature}
@@ -78,7 +104,9 @@ const Focus = () => {
         </div>
 
         <div className="text-center mt-12">
-          <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold text-lg transition-colors duration-200 shadow-lg hover:shadow-purple-500/25">
+          <button
+            className={`bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold text-lg transition-colors duration-200 shadow-lg hover:shadow-purple-500/25`}
+          >
             Explore All Services
           </button>
         </div>

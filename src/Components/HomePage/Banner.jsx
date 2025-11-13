@@ -5,9 +5,11 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useTheme } from "../../Contexts/ThemeContext";
 import Container from "../Container";
 
 const Banner = () => {
+  const { isDarkMode } = useTheme();
   const [slides, setSlides] = useState([]);
 
   useEffect(() => {
@@ -49,7 +51,11 @@ const Banner = () => {
                     </p>
                     <Link
                       to={"/property"}
-                      className="btn bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold text-lg transition-colors duration-200 shadow-lg hover:shadow-purple-500/25"
+                      className={`btn ${
+                        isDarkMode
+                          ? "bg-purple-600 hover:bg-purple-700"
+                          : "bg-purple-500 hover:bg-purple-600"
+                      } text-white px-8 py-3 rounded-lg font-semibold text-lg transition-colors duration-200 shadow-lg hover:shadow-purple-500/25`}
                     >
                       {slide.buttonText}
                     </Link>
