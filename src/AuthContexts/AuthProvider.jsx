@@ -48,7 +48,12 @@ const AuthProvider = ({ children }) => {
 
   //update password
   const changePassword = async (newPassword) => {
-    return updatePassword(auth.currentUser, newPassword);
+    try {
+      await updatePassword(auth.currentUser, newPassword);
+      return { success: true };
+    } catch (error) {
+      throw new Error(error.message);
+    }
   };
 
   // reset password

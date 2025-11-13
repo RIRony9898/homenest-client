@@ -12,9 +12,11 @@ import News from "../Pages/News";
 import Property from "../Pages/Property";
 import PropertyDetails from "../Pages/PropertyDetails";
 import Register from "../Pages/Register";
+import UpdateProfile from "../Pages/UpdateProfile";
 import UpdateProperty from "../Pages/UpdateProperty";
 import UserProfile from "../Pages/UserProfile";
 import PrivateRoute from "./PrivateRoute";
+import ChangePassword from "../Pages/ChangePassword";
 
 const router = createBrowserRouter([
   {
@@ -95,6 +97,22 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyRatings />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/profileUpdate",
+        element: (
+          <PrivateRoute>
+            <UpdateProfile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/passwordChange",
+        element: (
+          <PrivateRoute>
+            <ChangePassword />
           </PrivateRoute>
         ),
       },
