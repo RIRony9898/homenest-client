@@ -23,7 +23,11 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive
               ? "text-purple-400 font-bold"
-              : "text-gray-700 dark:text-gray-300 hover:text-purple-400 transition-colors duration-200"
+              : `${
+                  isDarkMode
+                    ? "text-gray-300 hover:text-purple-400"
+                    : "text-gray-700 hover:text-purple-600"
+                } transition-colors duration-200`
           }
         >
           Home
@@ -35,7 +39,11 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive
               ? "text-purple-400 font-bold"
-              : "text-gray-700 dark:text-gray-300 hover:text-purple-400 transition-colors duration-200"
+              : `${
+                  isDarkMode
+                    ? "text-gray-300 hover:text-purple-400"
+                    : "text-gray-700 hover:text-purple-600"
+                } transition-colors duration-200`
           }
         >
           Property
@@ -47,7 +55,11 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive
               ? "text-purple-400 font-bold"
-              : "text-gray-700 dark:text-gray-300 hover:text-purple-400 transition-colors duration-200"
+              : `${
+                  isDarkMode
+                    ? "text-gray-300 hover:text-purple-400"
+                    : "text-gray-700 hover:text-purple-600"
+                } transition-colors duration-200`
           }
         >
           News
@@ -59,7 +71,11 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive
               ? "text-purple-400 font-bold"
-              : "text-gray-700 dark:text-gray-300 hover:text-purple-400 transition-colors duration-200"
+              : `${
+                  isDarkMode
+                    ? "text-gray-300 hover:text-purple-400"
+                    : "text-gray-700 hover:text-purple-600"
+                } transition-colors duration-200`
           }
         >
           About
@@ -71,7 +87,11 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive
               ? "text-purple-400 font-bold"
-              : "text-gray-700 dark:text-gray-300 hover:text-purple-400 transition-colors duration-200"
+              : `${
+                  isDarkMode
+                    ? "text-gray-300 hover:text-purple-400"
+                    : "text-gray-700 hover:text-purple-600"
+                } transition-colors duration-200`
           }
         >
           Contact
@@ -85,7 +105,11 @@ const Navbar = () => {
               className={({ isActive }) =>
                 isActive
                   ? "text-purple-400 font-bold"
-                  : "text-gray-700 dark:text-gray-300 hover:text-purple-400 transition-colors duration-200"
+                  : `${
+                      isDarkMode
+                        ? "text-gray-300 hover:text-purple-400"
+                        : "text-gray-700 hover:text-purple-600"
+                    } transition-colors duration-200`
               }
             >
               Add Properties
@@ -97,7 +121,11 @@ const Navbar = () => {
               className={({ isActive }) =>
                 isActive
                   ? "text-purple-400 font-bold"
-                  : "text-gray-700 dark:text-gray-300 hover:text-purple-400 transition-colors duration-200"
+                  : `${
+                      isDarkMode
+                        ? "text-gray-300 hover:text-purple-400"
+                        : "text-gray-700 hover:text-purple-600"
+                    } transition-colors duration-200`
               }
             >
               My Properties
@@ -109,7 +137,11 @@ const Navbar = () => {
               className={({ isActive }) =>
                 isActive
                   ? "text-purple-400 font-bold"
-                  : "text-gray-700 dark:text-gray-300 hover:text-purple-400 transition-colors duration-200"
+                  : `${
+                      isDarkMode
+                        ? "text-gray-300 hover:text-purple-400"
+                        : "text-gray-700 hover:text-purple-600"
+                    } transition-colors duration-200`
               }
             >
               My Ratings
@@ -120,7 +152,13 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="bg-white dark:bg-gradient-to-r dark:from-slate-900 dark:via-purple-900 dark:to-slate-900 shadow-lg border-b border-gray-200 dark:border-purple-800">
+    <div
+      className={`shadow-lg border-b ${
+        isDarkMode
+          ? "bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 border-purple-800"
+          : "bg-white border-gray-200"
+      }`}
+    >
       <Container>
         <div className="navbar">
           <div className="navbar-start">
@@ -128,7 +166,9 @@ const Navbar = () => {
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost lg:hidden text-gray-700 dark:text-gray-300"
+                className={`btn btn-ghost lg:hidden ${
+                  isDarkMode ? "text-gray-300" : "text-gray-700"
+                }`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -148,7 +188,11 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex="-1"
-                className="menu menu-sm dropdown-content bg-white dark:bg-slate-800 rounded-box z-1 mt-3 w-52 p-2 shadow-lg border border-gray-200 dark:border-purple-700"
+                className={`menu menu-sm dropdown-content rounded-box z-1 mt-3 w-52 p-2 shadow-lg border ${
+                  isDarkMode
+                    ? "bg-slate-800 border-purple-700"
+                    : "bg-white border-gray-200"
+                }`}
               >
                 {links}
               </ul>
@@ -167,7 +211,11 @@ const Navbar = () => {
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="btn btn-ghost btn-circle text-gray-700 dark:text-gray-300 hover:text-purple-400 transition-colors duration-200"
+              className={`btn btn-ghost btn-circle transition-colors duration-200 ${
+                isDarkMode
+                  ? "text-gray-300 hover:text-purple-400"
+                  : "text-gray-700 hover:text-purple-600"
+              }`}
               aria-label="Toggle theme"
             >
               {isDarkMode ? (
@@ -190,17 +238,29 @@ const Navbar = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content menu bg-white dark:bg-slate-800 rounded-box z-1 w-52 p-2 shadow-lg border border-gray-200 dark:border-purple-700"
+                  className={`dropdown-content menu rounded-box z-1 w-52 p-2 shadow-lg border ${
+                    isDarkMode
+                      ? "bg-slate-800 border-purple-700"
+                      : "bg-white border-gray-200"
+                  }`}
                 >
                   <li className="menu-title">
-                    <span className="text-gray-700 dark:text-gray-300">
+                    <span
+                      className={`${
+                        isDarkMode ? "text-gray-300" : "text-gray-700"
+                      }`}
+                    >
                       {user.displayName || user.email}
                     </span>
                   </li>
                   <li>
                     <Link
                       to={"/profile"}
-                      className="text-gray-700 dark:text-gray-300 hover:text-purple-400 transition-colors duration-200"
+                      className={`transition-colors duration-200 ${
+                        isDarkMode
+                          ? "text-gray-300 hover:text-purple-400"
+                          : "text-gray-700 hover:text-purple-600"
+                      }`}
                     >
                       Profile
                     </Link>
@@ -208,7 +268,11 @@ const Navbar = () => {
                   <li>
                     <button
                       onClick={handleSignOut}
-                      className="text-gray-700 dark:text-gray-300 hover:text-purple-400 transition-colors duration-200"
+                      className={`transition-colors duration-200 ${
+                        isDarkMode
+                          ? "text-gray-300 hover:text-purple-400"
+                          : "text-gray-700 hover:text-purple-600"
+                      }`}
                     >
                       Log out
                     </button>
