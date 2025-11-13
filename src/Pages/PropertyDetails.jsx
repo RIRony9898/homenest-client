@@ -5,12 +5,14 @@ import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { AuthContext } from "../AuthContexts/AuthContext";
 import Container from "../Components/Container";
+import { useTheme } from "../Contexts/ThemeContext";
 import useTitle from "../Hooks/useTitle";
 
 const PropertyDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
+  const { isDarkMode } = useTheme();
   const [property, setProperty] = useState(null);
   const [reviews, setReviews] = useState([]);
   const [newReview, setNewReview] = useState({ rating: 0, text: "" });
@@ -109,10 +111,20 @@ const PropertyDetails = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 py-12 flex justify-center items-center">
+      <div
+        className={`min-h-screen py-12 flex justify-center items-center ${
+          isDarkMode
+            ? "bg-gradient-to-b from-slate-900 to-slate-800"
+            : "bg-gray-50"
+        }`}
+      >
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-400 mx-auto"></div>
-          <p className="mt-4 text-gray-300">Loading property details...</p>
+          <p
+            className={`mt-4 ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}
+          >
+            Loading property details...
+          </p>
         </div>
       </div>
     );
@@ -120,8 +132,18 @@ const PropertyDetails = () => {
 
   if (!property) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 py-12 flex justify-center items-center">
-        <div className="text-center text-gray-300">
+      <div
+        className={`min-h-screen py-12 flex justify-center items-center ${
+          isDarkMode
+            ? "bg-gradient-to-b from-slate-900 to-slate-800"
+            : "bg-gray-50"
+        }`}
+      >
+        <div
+          className={`text-center ${
+            isDarkMode ? "text-gray-300" : "text-gray-600"
+          }`}
+        >
           <p>Property not found</p>
         </div>
       </div>
@@ -131,47 +153,97 @@ const PropertyDetails = () => {
   const isOwner = user && user.email === property.userEmail;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 py-12">
+    <div
+      className={`min-h-screen py-12 ${
+        isDarkMode
+          ? "bg-gradient-to-b from-slate-900 to-slate-800"
+          : "bg-gray-50"
+      }`}
+    >
       <Container>
-        <div className="max-w-4xl mx-auto bg-gradient-to-br from-slate-800 to-slate-900 shadow-xl rounded-lg overflow-hidden border border-purple-700">
+        <div
+          className={`max-w-4xl mx-auto shadow-xl rounded-lg overflow-hidden border ${
+            isDarkMode
+              ? "bg-gradient-to-br from-slate-800 to-slate-900 border-purple-700/30"
+              : "bg-white border-gray-200"
+          }`}
+        >
           <img
             src={property.image}
             alt={property.name}
             className="w-full h-64 object-cover"
           />
           <div className="p-6">
-            <h1 className="text-3xl font-bold mb-4 text-white">
+            <h1
+              className={`text-3xl font-bold mb-4 ${
+                isDarkMode ? "text-white" : "text-gray-900"
+              }`}
+            >
               {property.name}
             </h1>
-            <p className="text-gray-300 mb-4">{property.description}</p>
+            <p
+              className={`mb-4 ${
+                isDarkMode ? "text-gray-300" : "text-gray-600"
+              }`}
+            >
+              {property.description}
+            </p>
             <div className="grid grid-cols-2 gap-4 mb-4">
               <p className="text-purple-300">
-                <strong className="text-white">Price:</strong> $
-                {property.price.toLocaleString()}
+                <strong
+                  className={`${isDarkMode ? "text-white" : "text-gray-900"}`}
+                >
+                  Price:
+                </strong>{" "}
+                ${property.price.toLocaleString()}
               </p>
               <p className="text-purple-300">
-                <strong className="text-white">Location:</strong>{" "}
+                <strong
+                  className={`${isDarkMode ? "text-white" : "text-gray-900"}`}
+                >
+                  Location:
+                </strong>{" "}
                 {property.location}
               </p>
               <p className="text-purple-300">
-                <strong className="text-white">Category:</strong>{" "}
+                <strong
+                  className={`${isDarkMode ? "text-white" : "text-gray-900"}`}
+                >
+                  Category:
+                </strong>{" "}
                 {property.category}
               </p>
               <p className="text-purple-300">
-                <strong className="text-white">Posted Date:</strong>{" "}
+                <strong
+                  className={`${isDarkMode ? "text-white" : "text-gray-900"}`}
+                >
+                  Posted Date:
+                </strong>{" "}
                 {new Date(property.postedDate).toLocaleDateString()}
               </p>
             </div>
             <div className="mb-6">
-              <h3 className="text-xl font-semibold mb-2 text-white">
+              <h3
+                className={`text-xl font-semibold mb-2 ${
+                  isDarkMode ? "text-white" : "text-gray-900"
+                }`}
+              >
                 Posted by:
               </h3>
               <p className="text-purple-300">
-                <strong className="text-white">Name:</strong>{" "}
+                <strong
+                  className={`${isDarkMode ? "text-white" : "text-gray-900"}`}
+                >
+                  Name:
+                </strong>{" "}
                 {property.userName}
               </p>
               <p className="text-purple-300">
-                <strong className="text-white">Email:</strong>{" "}
+                <strong
+                  className={`${isDarkMode ? "text-white" : "text-gray-900"}`}
+                >
+                  Email:
+                </strong>{" "}
                 {property.userEmail}
               </p>
             </div>
@@ -198,19 +270,39 @@ const PropertyDetails = () => {
 
         {/* Ratings & Reviews */}
         <div className="max-w-4xl mx-auto mt-8">
-          <h2 className="text-2xl font-bold mb-4 text-white">
+          <h2
+            className={`text-2xl font-bold mb-4 ${
+              isDarkMode ? "text-white" : "text-gray-900"
+            }`}
+          >
             Ratings & Reviews
           </h2>
 
           {/* Add Review Form */}
           {user && (
-            <div className="bg-gradient-to-br from-slate-800 to-slate-900 shadow-xl rounded-lg p-6 mb-6 border border-purple-700">
-              <h3 className="text-xl font-semibold mb-4 text-white">
+            <div
+              className={`shadow-xl rounded-lg p-6 mb-6 border ${
+                isDarkMode
+                  ? "bg-gradient-to-br from-slate-800 to-slate-900 border-purple-700/30"
+                  : "bg-white border-gray-200"
+              }`}
+            >
+              <h3
+                className={`text-xl font-semibold mb-4 ${
+                  isDarkMode ? "text-white" : "text-gray-900"
+                }`}
+              >
                 Add a Review
               </h3>
               <form onSubmit={handleReviewSubmit}>
                 <div className="mb-4">
-                  <label className="block text-gray-300 mb-2">Rating:</label>
+                  <label
+                    className={`block mb-2 ${
+                      isDarkMode ? "text-gray-300" : "text-gray-600"
+                    }`}
+                  >
+                    Rating:
+                  </label>
                   <ReactStars
                     count={5}
                     value={newReview.rating}
@@ -226,13 +318,23 @@ const PropertyDetails = () => {
                   />
                 </div>
                 <div className="mb-4">
-                  <label className="block text-gray-300 mb-2">Review:</label>
+                  <label
+                    className={`block mb-2 ${
+                      isDarkMode ? "text-gray-300" : "text-gray-600"
+                    }`}
+                  >
+                    Review:
+                  </label>
                   <textarea
                     value={newReview.text}
                     onChange={(e) =>
                       setNewReview({ ...newReview, text: e.target.value })
                     }
-                    className="w-full p-3 bg-slate-700 border border-purple-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20"
+                    className={`w-full p-3 rounded-lg focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 ${
+                      isDarkMode
+                        ? "bg-slate-700 border border-purple-600 text-white placeholder-gray-400"
+                        : "bg-gray-50 border border-gray-300 text-gray-900 placeholder-gray-500"
+                    }`}
                     rows="4"
                     placeholder="Write your review here..."
                     required
@@ -251,8 +353,18 @@ const PropertyDetails = () => {
           {/* Existing Reviews */}
           <div className="space-y-4">
             {reviews.length === 0 ? (
-              <div className="bg-gradient-to-br from-slate-800 to-slate-900 shadow-xl rounded-lg p-6 border border-purple-700">
-                <p className="text-gray-300 text-center">
+              <div
+                className={`shadow-xl rounded-lg p-6 border ${
+                  isDarkMode
+                    ? "bg-gradient-to-br from-slate-800 to-slate-900 border-purple-700/30"
+                    : "bg-white border-gray-200"
+                }`}
+              >
+                <p
+                  className={`text-center ${
+                    isDarkMode ? "text-gray-300" : "text-gray-600"
+                  }`}
+                >
                   No reviews yet. Be the first to review this property!
                 </p>
               </div>
@@ -260,13 +372,25 @@ const PropertyDetails = () => {
               reviews.map((review) => (
                 <div
                   key={review._id}
-                  className="bg-gradient-to-br from-slate-800 to-slate-900 shadow-xl rounded-lg p-6 border border-purple-700"
+                  className={`shadow-xl rounded-lg p-6 border ${
+                    isDarkMode
+                      ? "bg-gradient-to-br from-slate-800 to-slate-900 border-purple-700/30"
+                      : "bg-white border-gray-200"
+                  }`}
                 >
                   <div className="flex items-center justify-between mb-3">
-                    <h4 className="font-semibold text-white">
+                    <h4
+                      className={`font-semibold ${
+                        isDarkMode ? "text-white" : "text-gray-900"
+                      }`}
+                    >
                       {review.userName}
                     </h4>
-                    <span className="text-sm text-gray-400">
+                    <span
+                      className={`text-sm ${
+                        isDarkMode ? "text-gray-400" : "text-gray-500"
+                      }`}
+                    >
                       {new Date(review.createdAt).toLocaleDateString()}
                     </span>
                   </div>
@@ -277,7 +401,13 @@ const PropertyDetails = () => {
                     size={20}
                     activeColor="#ffd700"
                   />
-                  <p className="mt-3 text-gray-300">{review.text}</p>
+                  <p
+                    className={`mt-3 ${
+                      isDarkMode ? "text-gray-300" : "text-gray-600"
+                    }`}
+                  >
+                    {review.text}
+                  </p>
                 </div>
               ))
             )}
