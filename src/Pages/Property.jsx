@@ -1,5 +1,5 @@
 import { Search, SlidersHorizontal } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Container from "../Components/Container";
 import PropertyCard from "../Components/PropertyCard";
 import { useTheme } from "../Contexts/ThemeContext";
@@ -14,28 +14,31 @@ const Property = () => {
   const [sortBy, setSortBy] = useState("");
   const [sortOrder, setSortOrder] = useState("desc");
 
-  const fetchProperties = (search = "", sort = "", order = "desc") => {
-    setLoading(true);
-    const params = new URLSearchParams();
-    if (search) params.append("search", search);
-    if (sort) params.append("sortBy", sort);
-    if (order) params.append("sortOrder", order);
+  const fetchProperties = useCallback(
+    (search = "", sort = "", order = "desc") => {
+      setLoading(true);
+      const params = new URLSearchParams();
+      if (search) params.append("search", search);
+      if (sort) params.append("sortBy", sort);
+      if (order) params.append("sortOrder", order);
 
-    fetch(`https://homenest-server-tan.vercel.app/properties?${params}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setProperties(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching properties:", err);
-        setLoading(false);
-      });
-  };
+      fetch(`https://homenest-server-tan.vercel.app/properties?${params}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setProperties(data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error("Error fetching properties:", err);
+          setLoading(false);
+        });
+    },
+    []
+  );
 
   useEffect(() => {
     fetchProperties();
-  }, []);
+  }, [fetchProperties]);
 
   const handleSearch = (e) => {
     e.preventDefault();
