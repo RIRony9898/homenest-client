@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { PuffLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import { AuthContext } from "../AuthContexts/AuthContext";
+import { useTheme } from "../Contexts/ThemeContext";
 import useTitle from "../Hooks/useTitle";
 
 const Login = () => {
@@ -16,6 +17,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { signInUser, signInWithGoogle, resetPassword } =
     useContext(AuthContext);
+  const { isDarkMode } = useTheme();
 
   const handleForgotPassword = () => {
     const email = document.querySelector('input[name="email"]').value;
@@ -74,7 +76,13 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900/80 to-blue-900 flex items-center justify-center py-12 px-4">
+    <div
+      className={`min-h-screen flex items-center justify-center py-12 px-4 ${
+        isDarkMode
+          ? "bg-gradient-to-br from-blue-900 via-purple-900/80 to-blue-900"
+          : "bg-gray-50"
+      }`}
+    >
       <div className="max-w-md w-full">
         {/* Header */}
         <div className="text-center mb-8">
@@ -84,31 +92,54 @@ const Login = () => {
               Welcome Back
             </h1>
           </div>
-          <p className="text-gray-300 text-lg">
-            Sign in to your HomeNest account to continue your home journey with us!
+          <p
+            className={`text-lg ${
+              isDarkMode ? "text-gray-300" : "text-gray-600"
+            }`}
+          >
+            Sign in to your HomeNest account to continue your home journey with
+            us!
           </p>
         </div>
 
         {/* Login Card */}
-        <div className="bg-slate-800/50 backdrop-blur-sm border border-purple-700/30 rounded-2xl shadow-2xl p-8">
+        <div
+          className={`rounded-2xl shadow-2xl p-8 ${
+            isDarkMode
+              ? "bg-slate-800/50 backdrop-blur-sm border border-purple-700/30"
+              : "bg-white border border-gray-200"
+          }`}
+        >
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Email Field */}
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
+              <label
+                className={`block text-sm font-medium mb-2 ${
+                  isDarkMode ? "text-gray-300" : "text-gray-600"
+                }`}
+              >
                 Email Address
               </label>
               <input
                 type="email"
                 name="email"
                 required
-                className="w-full px-4 py-3 bg-slate-700/50 border border-purple-600/30 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all duration-200"
+                className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all duration-200 ${
+                  isDarkMode
+                    ? "bg-slate-700/50 border-purple-600/30 text-white placeholder-gray-400"
+                    : "bg-white border-gray-300 text-gray-900 placeholder-gray-500"
+                }`}
                 placeholder="Enter your email"
               />
             </div>
 
             {/* Password Field */}
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
+              <label
+                className={`block text-sm font-medium mb-2 ${
+                  isDarkMode ? "text-gray-300" : "text-gray-600"
+                }`}
+              >
                 Password
               </label>
               <div className="relative">
@@ -116,12 +147,20 @@ const Login = () => {
                   type={showPassword ? "text" : "password"}
                   name="password"
                   required
-                  className="w-full px-4 py-3 pr-12 bg-slate-700/50 border border-purple-600/30 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all duration-200"
+                  className={`w-full px-4 py-3 pr-12 border rounded-xl focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 transition-all duration-200 ${
+                    isDarkMode
+                      ? "bg-slate-700/50 border-purple-600/30 text-white placeholder-gray-400"
+                      : "bg-white border-gray-300 text-gray-900 placeholder-gray-500"
+                  }`}
                   placeholder="Enter your password"
                 />
                 <button
                   type="button"
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-purple-400 transition-colors duration-200"
+                  className={`absolute inset-y-0 right-0 pr-3 flex items-center transition-colors duration-200 ${
+                    isDarkMode
+                      ? "text-gray-400 hover:text-purple-400"
+                      : "text-gray-500 hover:text-purple-600"
+                  }`}
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
@@ -134,7 +173,11 @@ const Login = () => {
               <button
                 type="button"
                 onClick={handleForgotPassword}
-                className="text-purple-400 hover:text-purple-300 text-sm font-medium transition-colors duration-200"
+                className={`text-sm font-medium transition-colors duration-200 ${
+                  isDarkMode
+                    ? "text-purple-400 hover:text-purple-300"
+                    : "text-purple-600 hover:text-purple-700"
+                }`}
               >
                 Forgot password?
               </button>
@@ -151,7 +194,11 @@ const Login = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-purple-500/25 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+              className={`w-full font-semibold py-3 px-4 rounded-xl transition-all duration-200 shadow-lg flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed ${
+                isDarkMode
+                  ? "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white hover:shadow-purple-500/25"
+                  : "bg-purple-600 hover:bg-purple-700 text-white"
+              }`}
             >
               {isLoading ? (
                 <>
@@ -172,7 +219,13 @@ const Login = () => {
                 <div className="w-full border-t border-gray-600"></div>
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-slate-800 text-gray-400">
+                <span
+                  className={`px-2 ${
+                    isDarkMode
+                      ? "bg-slate-800 text-gray-400"
+                      : "bg-white text-gray-500"
+                  }`}
+                >
                   Or continue with
                 </span>
               </div>
@@ -183,7 +236,11 @@ const Login = () => {
               type="button"
               onClick={handleGoogleSignIn}
               disabled={isLoading}
-              className="w-full bg-white hover:bg-gray-50 text-gray-900 font-semibold py-3 px-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-gray-200/25 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+              className={`w-full font-semibold py-3 px-4 rounded-xl transition-all duration-200 shadow-lg flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed ${
+                isDarkMode
+                  ? "bg-white hover:bg-gray-50 text-gray-900 hover:shadow-gray-200/25"
+                  : "bg-gray-100 hover:bg-gray-200 text-gray-900"
+              }`}
             >
               <svg
                 aria-label="Google logo"
@@ -218,11 +275,17 @@ const Login = () => {
 
             {/* Register Link */}
             <div className="text-center">
-              <p className="text-gray-400">
+              <p
+                className={`${isDarkMode ? "text-gray-400" : "text-gray-500"}`}
+              >
                 New to HomeNest?{" "}
                 <Link
                   to="/register"
-                  className="text-purple-400 hover:text-purple-300 font-semibold transition-colors duration-200 flex items-center justify-center mt-2"
+                  className={`font-semibold transition-colors duration-200 flex items-center justify-center mt-2 ${
+                    isDarkMode
+                      ? "text-purple-400 hover:text-purple-300"
+                      : "text-purple-600 hover:text-purple-700"
+                  }`}
                 >
                   <UserPlus className="w-4 h-4 mr-1" />
                   Create Account

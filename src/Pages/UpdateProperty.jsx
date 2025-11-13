@@ -2,11 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
 import { toast } from "react-toastify";
 import { AuthContext } from "../AuthContexts/AuthContext";
+import { useTheme } from "../Contexts/ThemeContext";
 import useTitle from "../Hooks/useTitle";
 
 const UpdateProperty = () => {
   useTitle("Update Property");
   const { user } = useContext(AuthContext);
+  const { isDarkMode } = useTheme();
   const navigate = useNavigate();
   const { id } = useParams();
   const location = useLocation();
@@ -84,16 +86,32 @@ const UpdateProperty = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div
+      className={`min-h-screen py-12 ${
+        isDarkMode ? "bg-slate-900" : "bg-gray-50"
+      }`}
+    >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-8">
+        <div
+          className={`rounded-lg shadow-lg p-8 ${
+            isDarkMode ? "bg-slate-800 shadow-purple-900/20" : "bg-white"
+          }`}
+        >
+          <h1
+            className={`text-3xl font-bold mb-8 ${
+              isDarkMode ? "text-gray-100" : "text-gray-900"
+            }`}
+          >
             Update Property
           </h1>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  className={`block text-sm font-medium mb-2 ${
+                    isDarkMode ? "text-gray-300" : "text-gray-600"
+                  }`}
+                >
                   Property Name
                 </label>
                 <input
@@ -102,11 +120,19 @@ const UpdateProperty = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 ${
+                    isDarkMode
+                      ? "bg-slate-700 border-purple-700 text-gray-100"
+                      : "bg-white border-gray-300 text-gray-900"
+                  }`}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  className={`block text-sm font-medium mb-2 ${
+                    isDarkMode ? "text-gray-300" : "text-gray-600"
+                  }`}
+                >
                   Category
                 </label>
                 <select
@@ -114,7 +140,11 @@ const UpdateProperty = () => {
                   value={formData.category}
                   onChange={handleChange}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 ${
+                    isDarkMode
+                      ? "bg-slate-700 border-purple-700 text-gray-100"
+                      : "bg-white border-gray-300 text-gray-900"
+                  }`}
                 >
                   <option value="">Select Category</option>
                   <option value="Rent">Rent</option>
@@ -126,7 +156,11 @@ const UpdateProperty = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                className={`block text-sm font-medium mb-2 ${
+                  isDarkMode ? "text-gray-300" : "text-gray-600"
+                }`}
+              >
                 Description
               </label>
               <textarea
@@ -135,13 +169,21 @@ const UpdateProperty = () => {
                 onChange={handleChange}
                 required
                 rows="4"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 ${
+                  isDarkMode
+                    ? "bg-slate-700 border-purple-700 text-gray-100"
+                    : "bg-white border-gray-300 text-gray-900"
+                }`}
               />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  className={`block text-sm font-medium mb-2 ${
+                    isDarkMode ? "text-gray-300" : "text-gray-600"
+                  }`}
+                >
                   Price
                 </label>
                 <input
@@ -150,11 +192,19 @@ const UpdateProperty = () => {
                   value={formData.price}
                   onChange={handleChange}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 ${
+                    isDarkMode
+                      ? "bg-slate-700 border-purple-700 text-gray-100"
+                      : "bg-white border-gray-300 text-gray-900"
+                  }`}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  className={`block text-sm font-medium mb-2 ${
+                    isDarkMode ? "text-gray-300" : "text-gray-600"
+                  }`}
+                >
                   Location
                 </label>
                 <input
@@ -163,13 +213,21 @@ const UpdateProperty = () => {
                   value={formData.location}
                   onChange={handleChange}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 ${
+                    isDarkMode
+                      ? "bg-slate-700 border-purple-700 text-gray-100"
+                      : "bg-white border-gray-300 text-gray-900"
+                  }`}
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                className={`block text-sm font-medium mb-2 ${
+                  isDarkMode ? "text-gray-300" : "text-gray-600"
+                }`}
+              >
                 Image Link
               </label>
               <input
@@ -178,31 +236,51 @@ const UpdateProperty = () => {
                 value={formData.image}
                 onChange={handleChange}
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 ${
+                  isDarkMode
+                    ? "bg-slate-700 border-purple-700 text-gray-100"
+                    : "bg-white border-gray-300 text-gray-900"
+                }`}
               />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  className={`block text-sm font-medium mb-2 ${
+                    isDarkMode ? "text-gray-300" : "text-gray-600"
+                  }`}
+                >
                   User Email (Read-only)
                 </label>
                 <input
                   type="email"
                   value={user?.email || ""}
                   readOnly
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100"
+                  className={`w-full px-3 py-2 border rounded-md ${
+                    isDarkMode
+                      ? "bg-slate-700 border-purple-700 text-gray-100"
+                      : "bg-gray-100 border-gray-300 text-gray-900"
+                  }`}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  className={`block text-sm font-medium mb-2 ${
+                    isDarkMode ? "text-gray-300" : "text-gray-600"
+                  }`}
+                >
                   User Name (Read-only)
                 </label>
                 <input
                   type="text"
                   value={user?.displayName || ""}
                   readOnly
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100"
+                  className={`w-full px-3 py-2 border rounded-md ${
+                    isDarkMode
+                      ? "bg-slate-700 border-purple-700 text-gray-100"
+                      : "bg-gray-100 border-gray-300 text-gray-900"
+                  }`}
                 />
               </div>
             </div>
@@ -211,14 +289,18 @@ const UpdateProperty = () => {
               <button
                 type="button"
                 onClick={() => navigate("/my-properties")}
-                className="bg-gray-600 text-white px-6 py-2 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                className={`px-6 py-2 rounded-md focus:outline-none focus:ring-2 ${
+                  isDarkMode
+                    ? "bg-gray-600 hover:bg-gray-700 text-white focus:ring-gray-500"
+                    : "bg-gray-600 hover:bg-gray-700 text-white focus:ring-gray-500"
+                }`}
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={loading}
-                className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 disabled:opacity-50"
               >
                 {loading ? "Updating..." : "Update Property"}
               </button>

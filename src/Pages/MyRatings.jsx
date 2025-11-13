@@ -4,11 +4,13 @@ import ReactStars from "react-stars";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { AuthContext } from "../AuthContexts/AuthContext";
+import { useTheme } from "../Contexts/ThemeContext";
 import useTitle from "../Hooks/useTitle";
 
 const MyRatings = () => {
   useTitle("My Ratings");
   const { user } = useContext(AuthContext);
+  const { isDarkMode } = useTheme();
   const navigate = useNavigate();
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -60,17 +62,33 @@ const MyRatings = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 py-12 flex justify-center items-center">
+      <div
+        className={`min-h-screen py-12 flex justify-center items-center ${
+          isDarkMode
+            ? "bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900"
+            : "bg-gray-50"
+        }`}
+      >
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-400 mx-auto"></div>
-          <p className="mt-4 text-gray-300">Loading your ratings...</p>
+          <p
+            className={`mt-4 ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}
+          >
+            Loading your ratings...
+          </p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 py-16">
+    <div
+      className={`min-h-screen py-16 ${
+        isDarkMode
+          ? "bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900"
+          : "bg-gray-50"
+      }`}
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
@@ -81,7 +99,9 @@ const MyRatings = () => {
           {reviews.length === 0 ? (
             <div className="col-span-full text-center py-16">
               <svg
-                className="mx-auto h-24 w-24 text-gray-400"
+                className={`mx-auto h-24 w-24 ${
+                  isDarkMode ? "text-gray-400" : "text-gray-500"
+                }`}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -94,10 +114,18 @@ const MyRatings = () => {
                   d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
                 />
               </svg>
-              <h3 className="mt-4 text-lg font-medium text-white">
+              <h3
+                className={`mt-4 text-lg font-medium ${
+                  isDarkMode ? "text-white" : "text-gray-900"
+                }`}
+              >
                 No ratings found
               </h3>
-              <p className="mt-2 text-sm text-gray-300">
+              <p
+                className={`mt-2 text-sm ${
+                  isDarkMode ? "text-gray-300" : "text-gray-600"
+                }`}
+              >
                 You haven't given any ratings yet. Start by rating properties to
                 see them here.
               </p>
@@ -127,7 +155,13 @@ const MyRatings = () => {
             reviews.map((review) => (
               <div
                 key={review._id}
-                className="bg-gradient-to-br from-slate-800 to-slate-900 border border-purple-700/30 rounded-2xl shadow-lg overflow-hidden hover:shadow-purple-500/25 transition-all duration-300"
+                className={`bg-gradient-to-br ${
+                  isDarkMode
+                    ? "from-slate-800 to-slate-900"
+                    : "from-white to-gray-100"
+                } border ${
+                  isDarkMode ? "border-purple-700/30" : "border-gray-200"
+                } rounded-2xl shadow-lg overflow-hidden hover:shadow-purple-500/25 transition-all duration-300`}
               >
                 <img
                   src={review.propertyImage}
@@ -135,7 +169,11 @@ const MyRatings = () => {
                   className="w-full h-48 object-cover"
                 />
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold text-white mb-3">
+                  <h3
+                    className={`text-xl font-semibold mb-3 ${
+                      isDarkMode ? "text-white" : "text-gray-900"
+                    }`}
+                  >
                     {review.propertyName}
                   </h3>
                   <div className="mb-3">
@@ -147,15 +185,27 @@ const MyRatings = () => {
                       activeColor="#ffd700"
                     />
                   </div>
-                  <p className="text-sm text-gray-300 mb-3">
+                  <p
+                    className={`text-sm mb-3 ${
+                      isDarkMode ? "text-gray-300" : "text-gray-600"
+                    }`}
+                  >
                     <strong className="text-purple-400">Review:</strong>{" "}
                     {review.text}
                   </p>
-                  <p className="text-sm text-gray-300 mb-3">
+                  <p
+                    className={`text-sm mb-3 ${
+                      isDarkMode ? "text-gray-300" : "text-gray-600"
+                    }`}
+                  >
                     <strong className="text-purple-400">Date:</strong>{" "}
                     {new Date(review.createdAt).toLocaleDateString()}
                   </p>
-                  <p className="text-sm text-gray-300 mb-4">
+                  <p
+                    className={`text-sm mb-4 ${
+                      isDarkMode ? "text-gray-300" : "text-gray-600"
+                    }`}
+                  >
                     <strong className="text-purple-400">Reviewer:</strong>{" "}
                     {review.userName}
                   </p>
