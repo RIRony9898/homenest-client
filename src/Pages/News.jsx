@@ -1,10 +1,12 @@
 import { ArrowRight, Calendar, Newspaper, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import Container from "../Components/Container";
+import { useTheme } from "../Contexts/ThemeContext";
 import useTitle from "../Hooks/useTitle";
 
 const News = () => {
   useTitle("News");
+  const { isDarkMode } = useTheme();
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -23,23 +25,43 @@ const News = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 py-12 flex justify-center items-center">
+      <div
+        className={`min-h-screen py-12 flex justify-center items-center ${
+          isDarkMode
+            ? "bg-gradient-to-b from-slate-900 to-slate-800"
+            : "bg-gray-50"
+        }`}
+      >
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-400 mx-auto"></div>
-          <p className="mt-4 text-gray-300">Loading news...</p>
+          <p
+            className={`mt-4 ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}
+          >
+            Loading news...
+          </p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 py-16">
+    <div
+      className={`min-h-screen py-16 ${
+        isDarkMode
+          ? "bg-gradient-to-b from-slate-900 to-slate-800"
+          : "bg-gray-50"
+      }`}
+    >
       <Container>
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
             Latest Real Estate News
           </h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+          <p
+            className={`text-lg max-w-2xl mx-auto ${
+              isDarkMode ? "text-gray-300" : "text-gray-600"
+            }`}
+          >
             Stay informed with the latest trends, market insights, and real
             estate news from around the world.
           </p>
@@ -49,7 +71,13 @@ const News = () => {
           {news.map((article) => (
             <article
               key={article.id}
-              className="bg-gradient-to-br from-slate-800 to-slate-900 shadow-xl rounded-lg overflow-hidden border border-purple-700 hover:border-purple-500 transition-all duration-300 group"
+              className={`bg-gradient-to-br ${
+                isDarkMode
+                  ? "from-slate-800 to-slate-900"
+                  : "from-white to-gray-100"
+              } shadow-xl rounded-lg overflow-hidden border ${
+                isDarkMode ? "border-purple-700" : "border-gray-300"
+              } hover:border-purple-500 hover:shadow-purple-500/20 transition-all duration-300 group`}
             >
               <div className="relative overflow-hidden">
                 <img
@@ -62,13 +90,25 @@ const News = () => {
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-purple-300 transition-colors duration-200 line-clamp-2">
+                <h3
+                  className={`text-xl font-semibold mb-3 ${
+                    isDarkMode ? "text-white" : "text-gray-900"
+                  } group-hover:text-purple-300 transition-colors duration-200 line-clamp-2`}
+                >
                   {article.title}
                 </h3>
-                <p className="text-gray-300 text-sm leading-relaxed mb-4 line-clamp-3">
+                <p
+                  className={`text-sm leading-relaxed mb-4 line-clamp-3 ${
+                    isDarkMode ? "text-gray-300" : "text-gray-600"
+                  }`}
+                >
                   {article.excerpt}
                 </p>
-                <div className="flex items-center justify-between text-sm text-gray-400 mb-4">
+                <div
+                  className={`flex items-center justify-between text-sm mb-4 ${
+                    isDarkMode ? "text-gray-400" : "text-gray-500"
+                  }`}
+                >
                   <div className="flex items-center">
                     <User className="w-4 h-4 mr-1" />
                     <span>{article.author}</span>
@@ -88,7 +128,11 @@ const News = () => {
         </div>
 
         {news.length === 0 && (
-          <div className="text-center text-gray-400 mt-12">
+          <div
+            className={`text-center mt-12 ${
+              isDarkMode ? "text-gray-400" : "text-gray-500"
+            }`}
+          >
             <Newspaper className="w-16 h-16 mx-auto mb-4 opacity-50" />
             <p className="text-xl">No news articles available at the moment.</p>
             <p className="mt-2">Check back soon for the latest updates!</p>
