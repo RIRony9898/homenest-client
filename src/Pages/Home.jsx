@@ -8,7 +8,7 @@ import useTitle from "../Hooks/useTitle";
 const Home = () => {
   useTitle("Home");
   return (
-    <div>
+    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <Banner />
       <Focus />
       <Featured />

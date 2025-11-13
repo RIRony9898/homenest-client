@@ -1,12 +1,15 @@
+import { Moon, Sun } from "lucide-react";
 import { useContext } from "react";
 import { Link, NavLink } from "react-router";
 import logo from "../assets/logo.png";
 import userlogo from "../assets/user-logo.png";
 import { AuthContext } from "../AuthContexts/AuthContext";
 import Container from "../Components/Container";
+import { useTheme } from "../Contexts/ThemeContext";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
+  const { isDarkMode, toggleTheme } = useTheme();
   const handleSignOut = () => {
     signOutUser()
       .then(() => {})
@@ -20,7 +23,7 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive
               ? "text-purple-400 font-bold"
-              : "text-gray-300 hover:text-purple-400 transition-colors duration-200"
+              : "text-gray-700 dark:text-gray-300 hover:text-purple-400 transition-colors duration-200"
           }
         >
           Home
@@ -32,7 +35,7 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive
               ? "text-purple-400 font-bold"
-              : "text-gray-300 hover:text-purple-400 transition-colors duration-200"
+              : "text-gray-700 dark:text-gray-300 hover:text-purple-400 transition-colors duration-200"
           }
         >
           Property
@@ -44,7 +47,7 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive
               ? "text-purple-400 font-bold"
-              : "text-gray-300 hover:text-purple-400 transition-colors duration-200"
+              : "text-gray-700 dark:text-gray-300 hover:text-purple-400 transition-colors duration-200"
           }
         >
           News
@@ -56,7 +59,7 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive
               ? "text-purple-400 font-bold"
-              : "text-gray-300 hover:text-purple-400 transition-colors duration-200"
+              : "text-gray-700 dark:text-gray-300 hover:text-purple-400 transition-colors duration-200"
           }
         >
           About
@@ -68,7 +71,7 @@ const Navbar = () => {
           className={({ isActive }) =>
             isActive
               ? "text-purple-400 font-bold"
-              : "text-gray-300 hover:text-purple-400 transition-colors duration-200"
+              : "text-gray-700 dark:text-gray-300 hover:text-purple-400 transition-colors duration-200"
           }
         >
           Contact
@@ -82,7 +85,7 @@ const Navbar = () => {
               className={({ isActive }) =>
                 isActive
                   ? "text-purple-400 font-bold"
-                  : "text-gray-300 hover:text-purple-400 transition-colors duration-200"
+                  : "text-gray-700 dark:text-gray-300 hover:text-purple-400 transition-colors duration-200"
               }
             >
               Add Properties
@@ -94,7 +97,7 @@ const Navbar = () => {
               className={({ isActive }) =>
                 isActive
                   ? "text-purple-400 font-bold"
-                  : "text-gray-300 hover:text-purple-400 transition-colors duration-200"
+                  : "text-gray-700 dark:text-gray-300 hover:text-purple-400 transition-colors duration-200"
               }
             >
               My Properties
@@ -106,7 +109,7 @@ const Navbar = () => {
               className={({ isActive }) =>
                 isActive
                   ? "text-purple-400 font-bold"
-                  : "text-gray-300 hover:text-purple-400 transition-colors duration-200"
+                  : "text-gray-700 dark:text-gray-300 hover:text-purple-400 transition-colors duration-200"
               }
             >
               My Ratings
@@ -117,15 +120,15 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 shadow-lg border-b border-purple-800">
+    <div className="bg-white dark:bg-gradient-to-r dark:from-slate-900 dark:via-purple-900 dark:to-slate-900 shadow-lg border-b border-gray-200 dark:border-purple-800">
       <Container>
-        <div className="navbar ">
+        <div className="navbar">
           <div className="navbar-start">
             <div className="dropdown">
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost lg:hidden"
+                className="btn btn-ghost lg:hidden text-gray-700 dark:text-gray-300"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -145,7 +148,7 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex="-1"
-                className="menu menu-sm dropdown-content bg-slate-800 rounded-box z-1 mt-3 w-52 p-2 shadow-lg border border-purple-700"
+                className="menu menu-sm dropdown-content bg-white dark:bg-slate-800 rounded-box z-1 mt-3 w-52 p-2 shadow-lg border border-gray-200 dark:border-purple-700"
               >
                 {links}
               </ul>
@@ -160,7 +163,20 @@ const Navbar = () => {
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{links}</ul>
           </div>
-          <div className="navbar-end">
+          <div className="navbar-end flex items-center gap-2">
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="btn btn-ghost btn-circle text-gray-700 dark:text-gray-300 hover:text-purple-400 transition-colors duration-200"
+              aria-label="Toggle theme"
+            >
+              {isDarkMode ? (
+                <Sun className="w-5 h-5" />
+              ) : (
+                <Moon className="w-5 h-5" />
+              )}
+            </button>
+
             {user ? (
               <div className="dropdown dropdown-end">
                 <div
@@ -174,17 +190,17 @@ const Navbar = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content menu bg-slate-800 rounded-box z-1 w-52 p-2 shadow-lg border border-purple-700"
+                  className="dropdown-content menu bg-white dark:bg-slate-800 rounded-box z-1 w-52 p-2 shadow-lg border border-gray-200 dark:border-purple-700"
                 >
                   <li className="menu-title">
-                    <span className="text-gray-300">
+                    <span className="text-gray-700 dark:text-gray-300">
                       {user.displayName || user.email}
                     </span>
                   </li>
                   <li>
                     <Link
                       to={"/profile"}
-                      className="text-gray-300 hover:text-purple-400 transition-colors duration-200"
+                      className="text-gray-700 dark:text-gray-300 hover:text-purple-400 transition-colors duration-200"
                     >
                       Profile
                     </Link>
@@ -192,7 +208,7 @@ const Navbar = () => {
                   <li>
                     <button
                       onClick={handleSignOut}
-                      className="text-gray-300 hover:text-purple-400 transition-colors duration-200"
+                      className="text-gray-700 dark:text-gray-300 hover:text-purple-400 transition-colors duration-200"
                     >
                       Log out
                     </button>

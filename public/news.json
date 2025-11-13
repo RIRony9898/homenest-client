@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "New Luxury Condos Opening in Downtown",
+    "excerpt": "Discover the latest luxury condos featuring modern amenities and stunning city views. Perfect for urban living.",
+    "content": "The new development offers state-of-the-art facilities including a rooftop pool, fitness center, and concierge services. Units range from 1 to 3 bedrooms with prices starting at $500,000.",
+    "author": "Sarah Johnson",
+    "date": "2024-01-15",
+    "image": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=400&fit=crop",
+    "category": "Real Estate"
+  },
+  {
+    "id": 2,
+    "title": "Market Trends: Property Prices Rising 8% This Quarter",
+    "excerpt": "Latest market analysis shows significant growth in property values across major cities.",
+    "content": "According to recent data, property prices have increased by 8% in the last quarter, driven by low interest rates and high demand. Experts predict continued growth through the year.",
+    "author": "Mike Chen",
+    "date": "2024-01-12",
+    "image": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=400&fit=crop",
+    "category": "Market Analysis"
+  },
+  {
+    "id": 3,
+    "title": "Sustainable Living: Eco-Friendly Homes on the Rise",
+    "excerpt": "More homeowners are choosing sustainable options with energy-efficient features and green materials.",
+    "content": "The demand for eco-friendly homes has surged by 25% this year. Features like solar panels, energy-efficient appliances, and sustainable materials are becoming standard in new constructions.",
+    "author": "Emma Davis",
+    "date": "2024-01-10",
+    "image": "https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?w=800&h=400&fit=crop",
+    "category": "Sustainability"
+  },
+  {
+    "id": 4,
+    "title": "Investment Opportunities in Suburban Markets",
+    "excerpt": "Explore profitable investment options in growing suburban areas with strong rental yields.",
+    "content": "Suburban markets are showing strong growth potential with rental yields averaging 6-8%. Areas with good schools and amenities are particularly attractive for long-term investments.",
+    "author": "David Wilson",
+    "date": "2024-01-08",
+    "image": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=400&fit=crop",
+    "category": "Investment"
+  },
+  {
+    "id": 5,
+    "title": "Home Office Trends: Designing the Perfect Workspace",
+    "excerpt": "Tips and trends for creating functional and stylish home offices in your property.",
+    "content": "With remote work becoming permanent, homeowners are investing in dedicated office spaces. Key trends include ergonomic furniture, good lighting, and soundproofing solutions.",
+    "author": "Lisa Thompson",
+    "date": "2024-01-05",
+    "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=400&fit=crop",
+    "category": "Home Design"
+  },
+  {
+    "id": 6,
+    "title": "First-Time Homebuyer Guide: What You Need to Know",
+    "excerpt": "Comprehensive guide for first-time buyers navigating the property market.",
+    "content": "Buying your first home can be overwhelming. This guide covers everything from credit scores and down payments to finding the right mortgage and understanding closing costs.",
+    "author": "Robert Martinez",
+    "date": "2024-01-03",
+    "image": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=400&fit=crop",
+    "category": "Buying Guide"
+  }
+]
