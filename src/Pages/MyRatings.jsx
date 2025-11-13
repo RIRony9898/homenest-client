@@ -17,7 +17,9 @@ const MyRatings = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/my-reviews?userEmail=${user.email}`)
+      fetch(
+        `https://homenest-server-tan.vercel.app/my-reviews?userEmail=${user.email}`
+      )
         .then((res) => res.json())
         .then((data) => {
           setReviews(data);
@@ -43,9 +45,12 @@ const MyRatings = () => {
 
     if (result.isConfirmed) {
       try {
-        const response = await fetch(`http://localhost:3000/reviews/${id}`, {
-          method: "DELETE",
-        });
+        const response = await fetch(
+          `https://homenest-server-tan.vercel.app/reviews/${id}`,
+          {
+            method: "DELETE",
+          }
+        );
 
         if (response.ok) {
           setReviews(reviews.filter((review) => review._id !== id));

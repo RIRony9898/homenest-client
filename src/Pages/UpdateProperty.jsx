@@ -34,7 +34,7 @@ const UpdateProperty = () => {
         image: property.image || "",
       });
     } else {
-      fetch(`http://localhost:3000/properties/${id}`)
+      fetch(`https://homenest-server-tan.vercel.app/properties/${id}`)
         .then((res) => res.json())
         .then((data) => {
           setFormData({
@@ -63,13 +63,16 @@ const UpdateProperty = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(`http://localhost:3000/properties/${id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        `https://homenest-server-tan.vercel.app/properties/${id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (response.ok) {
         toast.success("Property updated successfully!");

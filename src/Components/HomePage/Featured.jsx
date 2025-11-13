@@ -9,7 +9,7 @@ const Featured = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/recent-properties")
+    fetch("https://homenest-server-tan.vercel.app/recent-properties")
       .then((res) => res.json())
       .then((data) => {
         setProperties(data);

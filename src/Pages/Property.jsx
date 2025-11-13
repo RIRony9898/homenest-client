@@ -21,7 +21,7 @@ const Property = () => {
     if (sort) params.append("sortBy", sort);
     if (order) params.append("sortOrder", order);
 
-    fetch(`http://localhost:3000/properties?${params}`)
+    fetch(`https://homenest-server-tan.vercel.app/properties?${params}`)
       .then((res) => res.json())
       .then((data) => {
         setProperties(data);

@@ -21,7 +21,7 @@ const PropertyDetails = () => {
   useTitle("Property Details");
 
   useEffect(() => {
-    fetch(`http://localhost:3000/properties/${id}`)
+    fetch(`https://homenest-server-tan.vercel.app/properties/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setProperty(data);
@@ -29,7 +29,7 @@ const PropertyDetails = () => {
       })
       .catch((err) => console.error("Error fetching property:", err));
 
-    fetch(`http://localhost:3000/reviews/${id}`)
+    fetch(`https://homenest-server-tan.vercel.app/reviews/${id}`)
       .then((res) => res.json())
       .then((data) => setReviews(data))
       .catch((err) => console.error("Error fetching reviews:", err));
@@ -54,13 +54,16 @@ const PropertyDetails = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/reviews", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(reviewData),
-      });
+      const response = await fetch(
+        "https://homenest-server-tan.vercel.app/reviews",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(reviewData),
+        }
+      );
 
       if (response.ok) {
         setReviews([...reviews, reviewData]);
@@ -92,9 +95,12 @@ const PropertyDetails = () => {
 
     if (result.isConfirmed) {
       try {
-        const response = await fetch(`http://localhost:3000/properties/${id}`, {
-          method: "DELETE",
-        });
+        const response = await fetch(
+          `https://homenest-server-tan.vercel.app/properties/${id}`,
+          {
+            method: "DELETE",
+          }
+        );
 
         if (response.ok) {
           toast.success("Property deleted successfully!");

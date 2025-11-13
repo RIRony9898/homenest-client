@@ -41,13 +41,16 @@ const AddProperty = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/properties", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(propertyData),
-      });
+      const response = await fetch(
+        "https://homenest-server-tan.vercel.app/properties",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(propertyData),
+        }
+      );
 
       if (response.ok) {
         toast.success("Property added successfully!");

@@ -16,7 +16,9 @@ const MyProperties = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/my-properties?userEmail=${user.email}`)
+      fetch(
+        `https://homenest-server-tan.vercel.app/my-properties?userEmail=${user.email}`
+      )
         .then((res) => res.json())
         .then((data) => {
           setProperties(data);
@@ -42,9 +44,12 @@ const MyProperties = () => {
 
     if (result.isConfirmed) {
       try {
-        const response = await fetch(`http://localhost:3000/properties/${id}`, {
-          method: "DELETE",
-        });
+        const response = await fetch(
+          `https://homenest-server-tan.vercel.app/properties/${id}`,
+          {
+            method: "DELETE",
+          }
+        );
 
         if (response.ok) {
           setProperties(properties.filter((prop) => prop._id !== id));
