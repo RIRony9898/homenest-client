@@ -1,9 +1,11 @@
 import { DollarSign, MapPin, Tag } from "lucide-react";
 import { useContext } from "react";
 import { AuthContext } from "../AuthContexts/AuthContext";
+import { useTheme } from "../Contexts/ThemeContext";
 
 const PropertyCard = ({ property }) => {
   const { user } = useContext(AuthContext);
+  const { isDarkMode } = useTheme();
 
   const handleViewDetails = () => {
     if (!user) {
@@ -14,7 +16,13 @@ const PropertyCard = ({ property }) => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-slate-800 to-slate-900 dark:from-gray-800 dark:to-gray-900 shadow-xl rounded-lg overflow-hidden border border-purple-700 dark:border-gray-600 hover:border-purple-500 hover:shadow-purple-500/20 transition-all duration-300 group">
+    <div
+      className={`bg-gradient-to-br ${
+        isDarkMode ? "from-slate-800 to-slate-900" : "from-white to-gray-100"
+      } shadow-xl rounded-lg overflow-hidden border ${
+        isDarkMode ? "border-purple-700" : "border-gray-300"
+      } hover:border-purple-500 hover:shadow-purple-500/20 transition-all duration-300 group`}
+    >
       <div className="relative overflow-hidden">
         <img
           src={property.image}
@@ -26,7 +34,11 @@ const PropertyCard = ({ property }) => {
         </div>
       </div>
       <div className="p-6">
-        <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-purple-300 transition-colors duration-200">
+        <h3
+          className={`text-xl font-semibold mb-3 ${
+            isDarkMode ? "text-white" : "text-gray-900"
+          } group-hover:text-purple-300 transition-colors duration-200`}
+        >
           {property.name}
         </h3>
         <div className="space-y-2 mb-4">
@@ -36,12 +48,20 @@ const PropertyCard = ({ property }) => {
               ${property.price.toLocaleString()}
             </span>
           </div>
-          <div className="flex items-center text-gray-300">
+          <div
+            className={`flex items-center ${
+              isDarkMode ? "text-gray-300" : "text-gray-600"
+            }`}
+          >
             <MapPin className="w-4 h-4 mr-2" />
             <span>{property.location}</span>
           </div>
         </div>
-        <p className="text-gray-300 text-sm leading-relaxed mb-4 line-clamp-2">
+        <p
+          className={`text-sm leading-relaxed mb-4 line-clamp-2 ${
+            isDarkMode ? "text-gray-300" : "text-gray-600"
+          }`}
+        >
           {property.description}
         </p>
         <button
