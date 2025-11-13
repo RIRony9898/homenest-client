@@ -21,7 +21,7 @@ const PropertyCard = ({ property }) => {
         isDarkMode ? "from-slate-800 to-slate-900" : "from-white to-gray-100"
       } shadow-xl rounded-lg overflow-hidden border ${
         isDarkMode ? "border-purple-700" : "border-gray-300"
-      } hover:border-purple-500 hover:shadow-purple-500/20 transition-all duration-300 group`}
+      } hover:border-purple-500 hover:shadow-purple-500/20 transition-all duration-300 group flex flex-col`}
     >
       <div className="relative overflow-hidden">
         <img
@@ -33,7 +33,7 @@ const PropertyCard = ({ property }) => {
           {property.category}
         </div>
       </div>
-      <div className="p-6">
+      <div className="p-6 flex-1 flex flex-col">
         <h3
           className={`text-xl font-semibold mb-3 ${
             isDarkMode ? "text-white" : "text-gray-900"
@@ -60,13 +60,13 @@ const PropertyCard = ({ property }) => {
         <p
           className={`text-sm leading-relaxed mb-4 line-clamp-2 ${
             isDarkMode ? "text-gray-300" : "text-gray-600"
-          }`}
+          } flex-1`}
         >
           {property.description}
         </p>
         <button
           onClick={handleViewDetails}
-          className="w-full bg-purple-600 hover:bg-purple-700 text-white px-4 py-3 rounded-lg transition-all duration-200 font-medium shadow-lg hover:shadow-purple-500/25 flex items-center justify-center space-x-2"
+          className="w-full bg-purple-600 hover:bg-purple-700 text-white px-4 py-3 rounded-lg transition-all duration-200 font-medium shadow-lg hover:shadow-purple-500/25 flex items-center justify-center space-x-2 mt-auto"
         >
           <span>View Details</span>
           <Tag className="w-4 h-4" />
