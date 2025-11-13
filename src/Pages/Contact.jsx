@@ -1,5 +1,6 @@
 import { Clock, Mail, MapPin, MessageSquare, Phone, Send } from "lucide-react";
 import { useState } from "react";
+import { toast } from "react-toastify";
 import Container from "../Components/Container";
 import { useTheme } from "../Contexts/ThemeContext";
 import useTitle from "../Hooks/useTitle";
@@ -27,7 +28,7 @@ const Contact = () => {
     console.log("Form submitted:", formData);
     // Reset form
     setFormData({ name: "", email: "", subject: "", message: "" });
-    alert("Thank you for your message! We'll get back to you soon.");
+    toast.success("Thank you for your message! We'll get back to you soon.");
   };
 
   return (

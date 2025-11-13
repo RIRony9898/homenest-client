@@ -56,6 +56,15 @@ const PropertyCard = ({ property }) => {
             <MapPin className="w-4 h-4 mr-2" />
             <span>{property.location}</span>
           </div>
+          <div
+            className={`flex items-center ${
+              isDarkMode ? "text-gray-300" : "text-gray-600"
+            }`}
+          >
+            <span className="text-sm">
+              Posted by: {property.userName || property.userEmail || "Unknown"}
+            </span>
+          </div>
         </div>
         <p
           className={`text-sm leading-relaxed mb-4 line-clamp-2 ${

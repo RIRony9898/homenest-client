@@ -387,7 +387,7 @@ const Footer = () => {
                       : "text-gray-600 hover:text-purple-600"
                   }`}
                 >
-                  Terms of Service
+                  Terms & Conditions
                 </a>
                 <a
                   href="#"

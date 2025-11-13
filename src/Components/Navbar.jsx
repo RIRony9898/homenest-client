@@ -46,7 +46,7 @@ const Navbar = () => {
                 } transition-colors duration-200`
           }
         >
-          Property
+          All Properties
         </NavLink>
       </li>
       <li>
@@ -151,6 +151,48 @@ const Navbar = () => {
       )}
     </>
   );
+
+  const mobileLinks = (
+    <>
+      {links}
+      {!user && (
+        <>
+          <li>
+            <NavLink
+              to={"/login"}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-purple-400 font-bold"
+                  : `${
+                      isDarkMode
+                        ? "text-gray-300 hover:text-purple-400"
+                        : "text-gray-700 hover:text-purple-600"
+                    } transition-colors duration-200`
+              }
+            >
+              Login
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to={"/register"}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-purple-400 font-bold"
+                  : `${
+                      isDarkMode
+                        ? "text-gray-300 hover:text-purple-400"
+                        : "text-gray-700 hover:text-purple-600"
+                    } transition-colors duration-200`
+              }
+            >
+              Signup
+            </NavLink>
+          </li>
+        </>
+      )}
+    </>
+  );
   return (
     <div
       className={`shadow-lg border-b ${
@@ -194,7 +236,7 @@ const Navbar = () => {
                     : "bg-white border-gray-200"
                 }`}
               >
-                {links}
+                {mobileLinks}
               </ul>
             </div>
             <Link to={"/"} className="flex items-center">
@@ -253,6 +295,15 @@ const Navbar = () => {
                       {user.displayName || user.email}
                     </span>
                   </li>
+                  <li className="menu-title">
+                    <span
+                      className={`text-sm ${
+                        isDarkMode ? "text-gray-400" : "text-gray-500"
+                      }`}
+                    >
+                      {user.email}
+                    </span>
+                  </li>
                   <li>
                     <Link
                       to={"/profile"}
@@ -280,12 +331,20 @@ const Navbar = () => {
                 </ul>
               </div>
             ) : (
-              <Link
-                to={"/login"}
-                className="btn bg-purple-600 hover:bg-purple-700 text-white border-purple-600"
-              >
-                Sign in
-              </Link>
+              <div className="hidden md:flex gap-2">
+                <Link
+                  to={"/login"}
+                  className="btn bg-purple-600 hover:bg-purple-700 text-white border-purple-600"
+                >
+                  Login
+                </Link>
+                <Link
+                  to={"/register"}
+                  className="btn bg-gray-600 hover:bg-gray-700 text-white border-gray-600"
+                >
+                  Signup
+                </Link>
+              </div>
             )}
           </div>
         </div>
